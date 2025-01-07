@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: unicorn-commander:${TAG:-latest}
+    container_name: unicorn-commander
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    networks:
+      - unicorn-net
+
+networks:
+  unicorn-net:
+    driver: bridge
